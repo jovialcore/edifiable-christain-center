@@ -11,7 +11,7 @@ class AdminFormController extends Controller
 {
     public function store(Request $req)
     {
-        if ($req->has('name') && $req->has('title') && $req->has('text') && $req->has('email')) {
+        if ($req->has('name') && $req->has('title') && $req->has('text') && $req->has('email') && $req->has('username')) {
 
             $validate = Validator::make(
                 $req->all(),
@@ -19,7 +19,8 @@ class AdminFormController extends Controller
                     'name' => 'required',
                     'title' => 'required',
                     'text' => 'required',
-                    'email' => 'required'
+                    'email' => 'required',
+                    'username' => 'required'
 
                 ],
                 [
@@ -27,6 +28,7 @@ class AdminFormController extends Controller
                     'text.required' => 'Text field is empty',
                     'title.required' => 'Title field is required',
                     'email.required' => 'Email field is required',
+                    'username.required' => 'Username field is required',
 
                 ]
             );
@@ -36,15 +38,17 @@ class AdminFormController extends Controller
 
             //save the poster
             $user = new User();
-            if(!$user->email === $req->email) {
+            if (!$user->email === $req->email) {
                 User::create([
                     'name' => $req->name,
-                    'email' => $req->email
+                    'email' => $req->email,
+                    'username' => $req->username
                 ]);
             }
 
-            $user_id = User::where('email', $req->email)->first()->id;
-
+            if (!$req->username == null ) {
+                $user_id = User::where('username', $req->username)->first()->id;
+            }
             //save the entire posts
             Posts::updateOrcreate([
                 'title' => $req->title,
