@@ -19,3 +19,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::post('/post',  [App\Http\Controllers\AdminFormController::class, 'store'])->name('admin.form');
+Route::get('/feed',  [App\Http\Controllers\FeedSection::class, 'index'])->name('feed');
