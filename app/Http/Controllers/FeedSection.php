@@ -15,7 +15,7 @@ class FeedSection extends Controller
             return response()->json(["data" => $post], 200);
         } else {
             return response()->json([
-                "message" => "No record found"
+                "message" => "No record feed at the moment"
             ], 404);
         }
     }
