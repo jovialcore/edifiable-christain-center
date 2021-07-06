@@ -8,6 +8,6 @@ http://edifiable.herokuapp.com/api/post  (please test only on postman or other a
 
 ##### Api to fetch feeds or posts 
 
-http://edifiable.herokuapp.com/api/feed  (please test on postman on as a url on the web)
+http://edifiable.herokuapp.com/api/feed  (please test on postman or as a url on the web)
 
 ### FE branch is the frontend
