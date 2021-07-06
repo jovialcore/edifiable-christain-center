@@ -9,10 +9,14 @@ class FeedSection extends Controller
 {
     public  function  index()
     {
-       $post =  Posts::get()->toArray();
+        $post =  Posts::get()->toArray();
 
-       return response()->json(["data" => $post]);
-
-   }
-
+        if (isset($post)) {
+            return response()->json(["data" => $post], 200);
+        } else {
+            return response()->json([
+                "message" => "No record found"
+            ], 404);
+        }
+    }
 }
