@@ -10,17 +10,16 @@ class FeedSection extends Controller
 {
     public  function  index()
     {
-        $post =  Posts::get(['id', 'title', 'text', 'created_at'])->toArray();
-        $poster = Posts::first('user_id');
 
-        dd($poster->user_id);
+        $post = Posts::with('user:id,username')->get();
 
         if (isset($post)) {
-            return response()->json(["data" => $post, 'poster' => 'f' ], 200);
+            return response()->json(['data' => $post], 200);
         } else {
             return response()->json([
                 "message" => "No record feed at the moment"
             ], 404);
         }
     }
+
 }

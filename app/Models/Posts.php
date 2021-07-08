@@ -14,9 +14,13 @@ class Posts extends Model
         'user_id'
     ];
 
+    protected $hidden = [
+    
+            'updated_at',
+    ];
 
 
-    public function users() {
-        return $this->belongsTo(user::class);
+    public function user() {
+        return $this->belongsTo(User::class, 'user_id');
     }
 }
