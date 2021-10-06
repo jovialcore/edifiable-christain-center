@@ -11,7 +11,7 @@ class FeedSection extends Controller
     public  function  index()
     {
 
-        $post = Posts::with('user:id,username')->get();
+        $post = Posts::with('user:id, username')->get();
 
         if (isset($post)) {
             return response()->json(['data' => $post], 200);
