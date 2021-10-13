@@ -14,13 +14,13 @@ class AuthController extends Controller
         //check if validation fails
 
         $validator = Validator::make($request->all(), [
-            'name' => 'required',
+            'firstname' => 'required',
+            'lastname' => 'required',
             'email' => 'required|email',
             'username' => 'required',
             'dob' => 'required',
             'gender' => 'required',
             'password' => 'required',
-            'c_password' => 'required|same:password',
         ]);
 
         if ($validator->fails()) {
@@ -32,7 +32,8 @@ class AuthController extends Controller
         $user = User::create($dataInput);
 
         return response()->json([
-            'token' => $user->createToken('edifyToken')->plainTextToken
+            'token' => $user->createToken('edifyToken')->plainTextToken,
+            'message' => "Registration was successful"
         ]);
     }
 
@@ -49,7 +50,9 @@ class AuthController extends Controller
 
         return response()->json([
             'token' => Auth::user()->createToken('edifyAuthToken')->plainTextToken,
-            'user' => Auth::user()
+            'user' => Auth::user(),
+            'status' => 'success',
+            'Message' => 'Signed in successfully'
         ]);
     }
 }

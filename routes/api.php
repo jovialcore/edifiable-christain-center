@@ -14,9 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::post('/register',  [App\Http\Controllers\AuthController::class, 'register'])->name('register');
+Route::post('/login',  [App\Http\Controllers\AuthController::class, 'login'])->name('login');
 
-Route::post('/post',  [App\Http\Controllers\AdminFormController::class, 'store'])->name('admin.form');
-Route::get('/feed',  [App\Http\Controllers\FeedSection::class, 'index'])->name('feed');
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/feed',  [App\Http\Controllers\FeedSection::class, 'index'])->name('feed');
+});
