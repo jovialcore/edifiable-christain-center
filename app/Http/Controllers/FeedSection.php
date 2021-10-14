@@ -13,7 +13,7 @@ class FeedSection extends Controller
 
         $post = Posts::with('user:id, username')->get();
 
-        if (isset($post)) {
+        if (empty($post)) {
             return response()->json(['data' => $post], 200);
         } else {
             return response()->json([
